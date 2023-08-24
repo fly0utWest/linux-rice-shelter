@@ -1,0 +1,13 @@
+configuration {
+    display-drun: "Search";
+    show-icons: true;
+    font: "JetBrains Mono, 14";
+    drun-display-format: "{icon} {name}";
+    icon-theme: "Gruvbox-Dark";
+}
+
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+
+element-icon {
+    size: 3ch;
+}
