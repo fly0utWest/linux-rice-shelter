@@ -7,10 +7,10 @@
     "margin-bottom": 0,
     "margin-right": 0,
     "spacing": 5, 
-    "modules-left": ["custom/launcher", "wlr/workspaces",],
+    "modules-left": ["custom/launcher", "hyprland/workspaces",],
     "modules-center": [],
-    "modules-right": ["tray", "backlight", "pulseaudio", "network", "battery", "clock", "custom/power-menu"],
-    "wlr/workspaces": {
+    "modules-right": ["idle_inhibitor", "tray", "backlight", "pulseaudio", "network", "battery", "clock", "custom/power-menu"],
+    "hyprland/workspaces": {
       //"format": "{icon}",
       "on-click": "activate",
       "format-icons": {
@@ -116,8 +116,15 @@
         "on-click": "bash ~/.config/waybar/scripts/power-menu/powermenu.sh",
     }, 
     "custom/launcher": {
-        "format": " <span color='#6a92d7'> </span>",
+        "format": " <span color='#6a92d7'> Menu </span>",
         "on-click": "rofi -show drun",
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " Idle off",
+            "deactivated": " Idle on"
+        }
     },
 }
 
