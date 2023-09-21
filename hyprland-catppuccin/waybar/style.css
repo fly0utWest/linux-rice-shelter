@@ -29,8 +29,10 @@ window > box {
   margin-right: 5px;
   margin-top: 5px;
   background-color: #1e1e2a;
-  padding: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   padding-left: 8px;
+  padding-right: 8px;
   border: 2px none #33ccff;
 }
 #workspaces {
@@ -79,6 +81,7 @@ tooltip label {
 #pulseaudio,
 #network,
 #battery,
+#idle_inhibitor,
 #custom-power-menu {
   padding-left: 10px;
   padding-right: 10px;
