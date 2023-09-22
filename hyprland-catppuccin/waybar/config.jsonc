@@ -31,8 +31,8 @@
         "spacing": 10
     },
     "clock": {
-        "format": "<span color='#bf616a'> </span>{:%I:%M %p}",
-        "format-alt": "<span color='#bf616a'> </span>{:%a %b %d}",
+        "format": "<span> </span>{:%I:%M %p}",
+        "format-alt": "<span> </span>{:%a %b %d}",
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
     },
 
@@ -96,7 +96,7 @@
       "format": "{icon} {capacity}%",
       "format-warning": "{icon} {capacity}%",
       "format-critical": "{icon} {capacity}%",
-      "format-charging": "<span font-family='Font Awesome 6 Free'></span> {capacity}%",
+      "format-charging": "<span></span> {capacity}%",
       "format-plugged": "  {capacity}%",
       "format-alt": "{icon} {time}",
       "format-full": "  {capacity}%",
@@ -112,12 +112,14 @@
     "on-scroll-down": "playerctl previous",
     },
     "custom/power-menu": {
-        "format": "<span color='#6a92d7'>⏻ </span>",
+        "format": "\uf011",
         "on-click": "bash ~/.config/waybar/scripts/power-menu/powermenu.sh",
+        "tooltip": false,
     }, 
     "custom/launcher": {
-        "format": "<span color='#6a92d7'> </span>",
+        "format": "\uf303 ",
         "on-click": "rofi -show drun",
+        "tooltip": false,
     },
     "idle_inhibitor": {
         "format": "{icon}",
