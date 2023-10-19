@@ -1,0 +1,14 @@
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-color=#89b4fa
+progress-color=over #313244
+default-timeout=8000
+font=JetBrains Mono 10
+border-radius=0
+
+[urgency=high]
+border-color=#fab387
+default-timeout=0
+border-size=4
+layer=overlay
+on-notify=exec /bin/paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
