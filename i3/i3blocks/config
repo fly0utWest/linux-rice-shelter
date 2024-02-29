@@ -1,0 +1,36 @@
+[wifi]
+command=$HOME/.config/i3blocks/wifi/wifi
+label=wifi:
+INTERFACE=wlo1
+interval=60
+
+[volume]
+command=$HOME/.config/i3blocks/volume/volume
+#LABEL=♪ 
+LABEL=VOL 
+interval=once
+signal=10
+#STEP=5%
+#MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
+
+
+[battery2]
+command=$HOME/.config/i3blocks/battery2/battery2
+markup=pango
+interval=30
+
+[time]
+command=$HOME/.config/i3blocks/time/time
+interval=1
+#TZ_FILE=~/.tz
+STRFTIME_FORMAT=%Y-%m-%d %H:%M
+TZONES=$DEFAULT_TZ
+TZ_LABELS=Moscow
+
+[xkb_layout]
+command=$HOME/.config/i3blocks/xkb_layout/xkb_layout
+font=monospace
+font_weight=bold
+interval=persist
+markup=pango

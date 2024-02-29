@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+connected_monitors=($(xrandr | awk '/ connected/ {print $1}'))
+
+if [ ${#connected_monitors[@]} -eq 0 ]; then
+    echo "No monitors detected."
+    exit 1
+fi
+
+if [ ${#connected_monitors[@]} -eq 1 ]; then
+    primary_monitor=${connected_monitors[0]}
+    xrandr --output "$primary_monitor" --mode 1920x1080 --rate 60.00 --primary
+else
+    primary_monitor=${connected_monitors[0]}
+    secondary_monitor=${connected_monitors[1]}
+    xrandr --output "$primary_monitor" --mode 1920x1080 --rate 60.00 --primary --right-of "$secondary_monitor" --output "$secondary_monitor" --off
+fi
+
+echo "Primary monitor set to: $primary_monitor"
+
