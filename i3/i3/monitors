@@ -1,6 +1,11 @@
 #!/bin/zsh
 
-connected_monitors=($(xrandr | awk '/ connected/ {print $1}'))
+if [[ $SHELL == */zsh ]]; then
+  setopt KSH_ARRAYS
+fi
+
+connected_monitors=($(xrandr --query | grep " connected" | cut -d" " -f1 | xargs))
+echo "${connected_monitors[@]}"
 
 if [ ${#connected_monitors[@]} -eq 0 ]; then
     echo "No monitors detected."

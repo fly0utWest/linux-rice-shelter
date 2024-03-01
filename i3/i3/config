@@ -167,7 +167,7 @@ gaps bottom 1
 gaps top 1
 
 # Monitor display settings
-exec_always --no-startup-id bash ~/.config/i3/monitors &
+exec_always --no-startup-id ~/.config/i3/monitors &
 
 exec picom --config ~/.config/picom/picom.conf &
 
