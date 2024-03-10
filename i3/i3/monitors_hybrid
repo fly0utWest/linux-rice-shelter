@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+if [[ $SHELL == */zsh ]]; then
+  setopt KSH_ARRAYS
+fi
+
+connected_monitors=($(xrandr --query | grep " connected" | cut -d" " -f1 | xargs))
+echo "${connected_monitors[@]}"
+
+if [ ${#connected_monitors[@]} -eq 0 ]; then
+    echo "No monitors detected."
+    exit 1
+fi
+
+current_mode=$(optimus-manager --print-mode | grep 'Current GPU mode' | cut -d':' -f2 | xargs)
+
+if [ ${#connected_monitors[@]} -eq 1 ]; then
+    primary_monitor=${connected_monitors[0]}
+    xrandr --output "$primary_monitor" --mode 1920x1080 --rate 60.00 --primary
+    if [ "$current_mode" != "hybrid" ]; then
+        optimus-manager --switch hybrid --no-confirm
+        echo "Switching Optimus Manager to Hybrid mode."
+    fi
+else
+    primary_monitor=${connected_monitors[0]}
+    secondary_monitor=${connected_monitors[1]}
+    xrandr --output "$primary_monitor" --mode 1920x1080 --rate 60.00 --primary --right-of "$secondary_monitor" --output "$secondary_monitor" --off
+    if [ "$current_mode" != "nvidia" ]; then
+        optimus-manager --switch nvidia --no-confirm
+        echo "Switching Optimus Manager to Discrete mode."
+    fi
+fi
+
+echo "Primary monitor set to: $primary_monitor"
+

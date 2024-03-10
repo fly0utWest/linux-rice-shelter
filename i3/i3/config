@@ -6,7 +6,7 @@
 set $mod Mod4
 
 # Font
-font pango:Hack Nerd Font 14
+font pango:JetBrainsMono Nerd Font 14
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -167,7 +167,8 @@ gaps bottom 1
 gaps top 1
 
 # Monitor display settings
-exec_always --no-startup-id ~/.config/i3/monitors &
+
+exec_always --no-startup-id ~/.config/i3/monitors_hybrid &
 
 exec picom --config ~/.config/picom/picom.conf &
 
