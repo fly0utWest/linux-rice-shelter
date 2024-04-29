@@ -1,5 +1,9 @@
+@import "mocha.css";
+
 * {
-  font-family: "JetBrainsMono Nerd Font";
+  /* https://docs.gtk.org/gtk3/css-overview.html#colors */
+  color: @text;
+  font-family: "Hack Nerd Font";
   font-size: 12pt;
   font-weight: bold;
   border-radius: 8px;
@@ -23,16 +27,15 @@
 }
 window#waybar {
   background-color: transparent;
+  border: 2px solid alpha(@crust, 0.3);
 }
 window > box {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
-  background-color: #1e1e2a;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  background-color: shade(@base, 0.9);
+  padding: 3px;
   padding-left: 8px;
-  padding-right: 8px;
   border: 2px none #33ccff;
 }
 #workspaces {
@@ -44,7 +47,6 @@ window > box {
   padding-bottom: 5px;
   padding-left: 6px;
   padding-right: 6px;
-  margin-right: 3px;
 }
 #workspaces button.active {
   background-color: rgb(181, 232, 224);
@@ -81,8 +83,7 @@ tooltip label {
 #pulseaudio,
 #network,
 #battery,
-#idle_inhibitor,
-#custom-power-menu {
+#custom-powermenu {
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -101,8 +102,27 @@ tooltip label {
 #clock {
   color: rgb(217, 224, 238);
 }
+
 #idle_inhibitor {
   color: rgb(221, 182, 242);
+  padding-right: 8px;
+}
+#battery {
+  min-width: 55px;
+  color: rgb(126, 186, 244);
+}
+#battery.charging,
+#battery.full,
+#battery.plugged {
+  color: #26a65b;
+}
+#battery.critical:not(.charging) {
+  color: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 #custom-wall {
   color: #33ccff;
@@ -122,7 +142,7 @@ tooltip label {
 #network.disconnected {
   color: rgb(255, 255, 255);
 }
-#custom-power-menu {
+#custom-powermenu {
   color: rgb(242, 143, 173);
   padding-right: 8px;
 }
