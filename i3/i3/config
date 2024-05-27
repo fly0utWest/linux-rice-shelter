@@ -6,7 +6,7 @@
 set $mod Mod4
 
 # Font
-font pango:JetBrainsMono Nerd Font 14
+font pango:Hack Nerd Font 16
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -14,9 +14,12 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioMute --release exec pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioLowerVolume --release exec pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioRaiseVolume --release exec pkill -RTMIN+1 i3blocks
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -30,9 +33,9 @@ bindsym $mod+q kill
 # start dmenu
 bindsym $mod+d exec --no-startup-id dmenu_run -fn "Hack Nerd Font:regular:pixelsize=16"
 
-bindsym $mod+s exec flameshot gui
+bindsym Print exec flameshot gui
 bindsym $mod+t exec telegram-desktop
-bindsym $mod+b exec firefox-developer-edition
+bindsym $mod+b exec brave
 
 # keybinding to lock screen
 bindsym $mod+Escape exec i3lock -c 000000
@@ -168,22 +171,17 @@ gaps top 1
 
 # Monitor display settings
 
-exec_always --no-startup-id ~/.config/i3/monitors_hybrid &
+exec_always --no-startup-id ~/.config/i3/monitors &
 
 exec picom --config ~/.config/picom/picom.conf &
 
 exec dunst &
 exec udiskie &
-exec solaar --window=hide &
 exec flameshot &
 exec blueman-applet &
-exec optimus-manager-qt &
 exec autotiling &
 
 exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'"
-
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 bar {
         status_command i3blocks
